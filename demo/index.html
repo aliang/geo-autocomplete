@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+
+<title>jQuery geo_Autocomplete Plugin</title>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.3.2.min.js"></script>
+
+<!-- 
+jquery.autocomplete.js requires a minor modification for geo_autocomplete to work
+the following script includes the required mod
+-->
+<script type="text/javascript" src="../lib/jquery.autocomplete_geomod.js"></script>
+
+<script type="text/javascript" src="../geo_autocomplete.js"></script>
+<link rel="stylesheet" type="text/css" href="../lib/jquery.autocomplete.css" />
+	
+<script type="text/javascript">
+$().ready(function() {
+
+    var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var myOptions = {
+      zoom: 8,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+	// use all the autocomplete options as documented at http://docs.jquery.com/Plugins/Autocomplete
+	/* additional geo_autocomplete options:
+		mapkey : 'ABQ...' (required for Static Maps thumbnails, obtain a key for your site from http://code.google.com/apis/maps/signup.html)
+		mapwidth : 100
+		mapheight : 100
+		maptype : 'terrain' (see http://code.google.com/apis/maps/documentation/staticmaps/#MapTypes)
+		mapsensor : true or false
+	*/
+	$('#location').geo_autocomplete(new google.maps.Geocoder, {
+		mapkey: 'ABQIAAAAbnvDoAoYOSW2iqoXiGTpYBT2yXp_ZAY8_ufC3CFXhHIE1NvwkxQNumU68AwGqjbSNF9YO8NokKst8w', 
+		selectFirst: false,
+		minChars: 3,
+		cacheLength: 50,
+		width: 300,
+		scroll: true,
+		scrollHeight: 330
+	}).result(function(_event, _data) {
+		if (_data) map.fitBounds(_data.geometry.viewport);
+	});
+
+});
+</script>
+<style>
+.ac_results li img {
+	float: left;
+	margin-right: 5px;
+}
+</style>
+</head>
+<body>
+<h1><a href="http://code.google.com/p/geo-autocomplete">jQuery geo_Autocomplete Plugin</a> Demo</h1>
+
+<div>Location: <input type="text" id="location" /> (autocomplete)</div>
+<br/>
+<div id="map_canvas" style="width:500px;height:350px;"/>
+
+</body>
+</html>
