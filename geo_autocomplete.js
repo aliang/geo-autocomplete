@@ -8,17 +8,7 @@
  *   http://www.gnu.org/licenses/gpl.html
  *
  * Requires jQuery Autocomplete plugin by Jörn Zaefferer - see http://bassistance.de/jquery-plugins/jquery-plugin-autocomplete/
- * modified by adding the following code before the line in function request starting '} else if( (typeof options.url == "string") ...'
- 
- 		} else if (options.geocoder) {
-			var _query = lastWord(term);
-			options.geocoder.geocode({'address': _query}, function(_results, _status) {
-				var parsed = options.parse(_results, _status, _query);
-				cache.add(term, parsed);
-				success(term, parsed);
-			});
- *
- * See ... tbc ... for more details on implementation
+ * jquery.autocomplete.js requires a minor modification for geo_autocomplete to work, as shown in /lib/jquery.autocomplete_geomod.js
  * 
  */
 ;(function($) {
