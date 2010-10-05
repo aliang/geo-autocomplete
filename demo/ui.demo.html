@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+
+<title>jQuery geo_Autocomplete Plugin</title>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+<link type="text/css" href="../lib/jquery-ui/css/ui-lightness/jquery-ui-1.8.5.custom.css" rel="Stylesheet" />	
+<script type="text/javascript" src="../lib/jquery-ui/js/jquery-ui-1.8.5.custom.min.js"></script>
+<script type="text/javascript" src="../ui.geo_autocomplete.js"></script>
+	
+<script type="text/javascript">
+$().ready(function() {
+
+    var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var myOptions = {
+      zoom: 8,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+	// use all the autocomplete options as documented at http://jqueryui.com/demos/autocomplete
+	/* additional geo_autocomplete options:
+		map: the google.maps.Map object to relocate
+		mapwidth : 100
+		mapheight : 100
+		maptype : 'terrain' (see http://code.google.com/apis/maps/documentation/staticmaps/#MapTypes)
+		mapsensor : true or false
+	*/
+	$('#location').geo_autocomplete({
+		// this example relocates the map
+		select: function(event, ui) {
+			if (ui.item.viewport) map.fitBounds(ui.item.viewport);
+		}
+	});
+});
+</script>
+<style type="text/css">
+.ui-autocomplete { overflow-y: scroll; }
+* html .ui-autocomplete { /* IE max- */height: expression( this.scrollHeight > 400 ? "400px" : "auto" ); }
+.ui-autocomplete { max-height: 400px; }
+</style>
+</head>
+<body>
+<h3><a href="http://code.google.com/p/geo-autocomplete">jQuery geo-autocomplete Plugin</a> Demo</h3>
+
+<p>Updated 6 Oct 2010: Now uses jQuery UI Autocomplete. You can still try the <a href="index.html">previous version</a>.</p>
+
+<div>Location: <input type="text" id="location" /> (autocomplete)</div>
+<br/>
+<div id="map_canvas" style="width:500px;height:350px;"/>
+
+</body>
+</html>
