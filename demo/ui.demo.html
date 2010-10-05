@@ -37,16 +37,16 @@ $().ready(function() {
 });
 </script>
 <style type="text/css">
-.ui-autocomplete { overflow-y: scroll; width:300px; }
-* html .ui-autocomplete { /* IE max- */height: expression( this.scrollHeight > 400 ? "400px" : "auto" ); }
-.ui-autocomplete { max-height: 400px; }
+.ui-autocomplete { overflow-y: auto; width:300px; }
+* html .ui-autocomplete { /* IE max- */height: expression( this.scrollHeight > 320 ? "320px" : "auto" ); }
+.ui-autocomplete { max-height: 320px; }
 .ui-autocomplete li { font-size:10pt; }
 </style>
 </head>
 <body>
 <h3><a href="http://code.google.com/p/geo-autocomplete">jQuery geo-autocomplete Plugin</a> Demo</h3>
 
-<p>Updated 6 Oct 2010: Now uses jQuery UI Autocomplete. You can still try the <a href="index.html">previous version</a>.</p>
+<p>Updated 6 Oct 2010: Now built upon jQuery UI Autocomplete. You can still try the <a href="index.html">previous version</a>.</p>
 
 <div>Location: <input type="text" id="location" /> (autocomplete)</div>
 <br/>
